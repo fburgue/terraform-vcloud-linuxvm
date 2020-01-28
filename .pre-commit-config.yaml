@@ -1,0 +1,75 @@
+---
+repos:
+  -
+    repo: 'https://github.com/pre-commit/pre-commit-hooks.git'
+    rev: v2.1.0
+    hooks:
+      -
+        id: trailing-whitespace
+        stages:
+          - commit
+          - push
+        exclude: '^test/vendor/*'
+      -
+        id: check-yaml
+        stages:
+          - commit
+          - push
+        exclude: '^test/vendor/*'
+      -
+        id: check-json
+        stages:
+          - commit
+          - push
+        exclude: '^test/vendor/*'
+      -
+        id: check-merge-conflict
+        stages:
+          - commit
+          - push
+  -
+    repo: 'https://github.com/jumanjihouse/pre-commit-hooks.git'
+    rev: 1.10.2
+    hooks:
+      -
+        id: shellcheck
+        stages:
+          - commit
+          - push
+      -
+        id: shfmt
+        stages:
+          - commit
+          - push
+  -
+    repo: 'https://github.com/adrienverge/yamllint'
+    rev: v1.13.0
+    hooks:
+      -
+        id: yamllint
+        stages:
+          - commit
+          - push
+        exclude: '^test/vendor/*'
+  -
+    repo: 'https://github.com/jorisroovers/gitlint.git'
+    rev: v0.10.0
+    hooks:
+      -
+        id: gitlint
+        stages:
+          - commit-msg
+  -
+    repo: 'https://github.com/antonbabenko/pre-commit-terraform'
+    rev: v1.22.0
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+  -
+    repo: 'https://github.com/dnephin/pre-commit-golang'
+    rev: HEAD
+    hooks:
+      - id: go-fmt
+        exclude: '^test/vendor/*'
+      - id: go-lint
+        exclude: '^test/vendor/*'
