@@ -91,6 +91,12 @@ variable "network" {
   type        = string
 }
 
+variable "dc" {
+  description = "Name of the dc where this VM is running"
+  type        = string
+  default     = "sibelga"
+}
+
 variable "quantity" {
   description = "Number of VM to manage"
   type        = number

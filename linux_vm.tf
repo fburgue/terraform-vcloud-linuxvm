@@ -5,6 +5,7 @@ locals {
     "hostgroup" : var.hostgroup
     "zone" : var.zone
     "instance" : var.instance
+    "dc" : var.dc
   })
 }
 
@@ -43,6 +44,7 @@ resource "vcd_vapp_vm" "vm" {
     subgroup  = var.subgroup
     hostgroup = var.hostgroup
     zone      = var.zone
+    dc        = var.dc
   }
 
   network {
