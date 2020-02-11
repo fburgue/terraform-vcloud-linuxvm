@@ -26,6 +26,7 @@ resource "vcd_vapp_vm" "vm" {
       hostgroup   = var.hostgroup,
       zone        = var.zone,
       post_script = var.post_script,
+      extra_disk  = var.extra_disk_size
   })
 
   override_template_disk {
@@ -58,6 +59,18 @@ resource "vcd_vapp_vm" "vm" {
     ]
   }
 
+}
+
+resource "vcd_vm_internal_disk" "sdc" {
+  count           = var.quantity != 0 && var.extra_disk_size != 0 ? 1 : 0
+  vapp_name       = var.vapp
+  vm_name         = vcd_vapp_vm.vm[0].name
+  bus_type        = "paravirtual"
+  size_in_mb      = var.extra_disk_size
+  bus_number      = 0
+  unit_number     = 2
+  storage_profile = "SILVER"
+  allow_vm_reboot = "false"
 }
 
 output "ip" {

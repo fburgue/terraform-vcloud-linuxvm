@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-set -x
-echo "Bootstraping machine using initscript"
-
-echo "Setting facts"
-# shellcheck disable=SC2154
-{
-  cat <<FACTS >/etc/facter/facts.d/host-info.json
-${json_facts}
-FACTS
-  mkdir -p /etc/ansible/facts.d
-  cp /etc/facter/facts.d/host-info.json /etc/ansible/facts.d/cirb.fact
-  echo "environment=${hostgroup}_${zone}" >>/etc/puppetlabs/puppet/puppet.conf
+function create_extra_disk {
+  echo "Adding sdc"
+  for host in /sys/class/scsi_host/*; do echo "- - -" > "$host/scan" ; done
+  for device in /sys/class/scsi_disk/*; do echo "1" > "$device/device/rescan" ; done
+  echo ',,8e;' | sfdisk /dev/sdc 2>&1
+  pvcreate /dev/sdc1 2>&1
+  vgextend vg_rhel /dev/sdc1 2>&1
 }
 echo "Finished setting facts"
 

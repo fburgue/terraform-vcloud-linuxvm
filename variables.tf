@@ -80,6 +80,12 @@ variable "srv_size" {
   default     = 10240
 }
 
+variable "extra_disk_size" {
+  description = "Number of megabytes to allocate in one extra disk"
+  type        = number
+  default     = 0
+}
+
 variable "network" {
   description = "Name of the network to use for this VM"
   type        = string

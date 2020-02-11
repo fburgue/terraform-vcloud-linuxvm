@@ -1,4 +1,4 @@
-# Terraform module for vcloud  
+# Terraform module for vcloud
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
@@ -7,6 +7,7 @@
 |------|-------------|:----:|:-----:|:-----:|
 | catalog | Name of the catalog | string | `"PUBLIC-CAT"` | no |
 | cpus | The number of virtual CPUs to allocate to the VM. Socket count is a result of: virtual logical processors/cores per socket. | number | `"1"` | no |
+| extra\_disk\_size | Number of megabytes to allocate in one extra disk | number | `"0"` | no |
 | hostgroup | Puppet/Ansible hostgroup of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information) | string | n/a | yes |
 | hostname | Hostname of the machine | string | n/a | yes |
 | instance | Puppet/Ansible instance of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information) | string | n/a | yes |
