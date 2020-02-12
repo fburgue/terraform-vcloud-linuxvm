@@ -45,6 +45,7 @@ resource "vcd_vapp_vm" "vm" {
     hostgroup = var.hostgroup
     zone      = var.zone
     dc        = var.dc
+    instance  = var.instance
   }
 
   network {
