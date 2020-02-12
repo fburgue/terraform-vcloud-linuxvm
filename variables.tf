@@ -102,3 +102,8 @@ variable "quantity" {
   type        = number
   default     = 1
 }
+
+variable "storage_profile" {
+  description = "Storage profile name"
+  type        = string
+}

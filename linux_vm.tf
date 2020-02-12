@@ -15,7 +15,7 @@ resource "vcd_vapp_vm" "vm" {
   name            = format("%s%04s", "${var.hostname}", "${count.index}")
   computer_name   = format("%s%04s", "${var.hostname}", "${count.index}")
   power_on        = true
-  storage_profile = "SILVER"
+  storage_profile = var.storage_profile
   catalog_name    = var.catalog
   template_name   = var.template
   memory          = var.memory
@@ -36,7 +36,7 @@ resource "vcd_vapp_vm" "vm" {
     bus_number      = 0
     unit_number     = 1
     iops            = 0
-    storage_profile = "SILVER"
+    storage_profile = var.storage_profile
   }
 
   metadata = {
@@ -72,7 +72,7 @@ resource "vcd_vm_internal_disk" "sdc" {
   size_in_mb      = var.extra_disk_size
   bus_number      = 0
   unit_number     = 2
-  storage_profile = "SILVER"
+  storage_profile = var.storage_profile
   allow_vm_reboot = "false"
 }
 
