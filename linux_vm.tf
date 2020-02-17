@@ -1,4 +1,6 @@
 locals {
+  short_zone = substr(var.zone, 0, 1)
+  short_type = substr(var.hostname_type, 0, 1)
   json_facts = jsonencode({
     "role" : var.role
     "subgroup" : var.subgroup
@@ -10,10 +12,9 @@ locals {
 }
 
 resource "vcd_vapp_vm" "vm" {
-  count           = var.quantity
   vapp_name       = var.vapp
-  name            = format("%s%04s", "${var.hostname}", "${count.index}")
-  computer_name   = format("%s%04s", "${var.hostname}", "${count.index}")
+  name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
+  computer_name   = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
   power_on        = true
   storage_profile = var.storage_profile
   catalog_name    = var.catalog
@@ -65,9 +66,9 @@ resource "vcd_vapp_vm" "vm" {
 }
 
 resource "vcd_vm_internal_disk" "sdc" {
-  count           = var.quantity != 0 && var.extra_disk_size != 0 ? 1 : 0
+  count           = var.extra_disk_size != 0 ? 1 : 0
   vapp_name       = var.vapp
-  vm_name         = vcd_vapp_vm.vm[0].name
+  vm_name         = vcd_vapp_vm.vm.name
   bus_type        = "paravirtual"
   size_in_mb      = var.extra_disk_size
   bus_number      = 0
@@ -76,7 +77,7 @@ resource "vcd_vm_internal_disk" "sdc" {
   allow_vm_reboot = "false"
 }
 
-output "ip" {
-  value       = vcd_vapp_vm.vm[*].network[0].ip
-  description = "VM Ips"
-}
+#output "ip" {
+#  value       = vcd_vapp_vm.vm.network[0].ip
+#  description = "VM Ips"
+#}

@@ -10,16 +10,6 @@ variable "template" {
   default     = "RHEL7.7_Template_v_3.0.1"
 }
 
-variable "hostname" {
-  description = "Hostname of the machine"
-  type        = string
-
-  #  validation {
-  #    condition     = can(regex("^dvvla[0-9]{4}", var.hostname))
-  #    error_message = "The hostname must be a valid hostname maching ^dvvla[0-9]{4}"
-  #  }
-}
-
 variable "vapp" {
   description = "Name of the VApp"
   type        = string
@@ -97,13 +87,24 @@ variable "dc" {
   default     = "sibelga"
 }
 
-variable "quantity" {
-  description = "Number of VM to manage"
-  type        = number
-  default     = 1
-}
-
 variable "storage_profile" {
   description = "Storage profile name"
   type        = string
+}
+
+variable "hostname_app_description" {
+  description = "Application description (refer to 'Server naming convention v7.0)"
+  type        = string
+}
+
+variable "hostname_type" {
+  description = "Server type (refer to 'Server naming convention v7.0)"
+  type        = string
+  default     = "application"
+}
+
+variable "hostname_index" {
+  description = "VM unique ID"
+  type        = number
+  default     = 1
 }
