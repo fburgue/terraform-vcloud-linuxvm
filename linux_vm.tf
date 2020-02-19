@@ -77,7 +77,7 @@ resource "vcd_vm_internal_disk" "sdc" {
   allow_vm_reboot = "false"
 }
 
-#output "ip" {
-#  value       = vcd_vapp_vm.vm.network[0].ip
-#  description = "VM Ips"
-#}
+output "ip" {
+  value       = vcd_vapp_vm.vm.network[0].ip
+  description = "VM Ips"
+}
