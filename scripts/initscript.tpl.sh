@@ -4,7 +4,7 @@ function create_extra_disk {
   for (( i=0; i<10; ++i)); do   # wait for disk to be created (sometimes slow...)
     for host in /sys/class/scsi_host/*; do echo "- - -" > "$host/scan" ; done
     for device in /sys/class/scsi_disk/*; do echo "1" > "$device/device/rescan" ; done
-    fdisk -l /dev/sdc && break
+    fdisk -l /dev/sdc 2>&1 && break
     sleep 5
   done
   echo ',,8e;' | sfdisk /dev/sdc 2>&1
