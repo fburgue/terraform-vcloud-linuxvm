@@ -20,11 +20,24 @@ if [ x$1 == x"precustomization" ]; then
   echo "Setting facts"
   # shellcheck disable=SC2154
   {
-    cat <<FACTS >/etc/facter/facts.d/host-info.json
-  ${json_facts}
+    cat <<FACTS >/etc/facter/facts.d/host-info.txt
+dc=${dc}
+hostgroup=${hostgroup}
+instance=${instance}
+role=${role}
+subgroup=${subgroup}
+zone=${zone}
 FACTS
     mkdir -p /etc/ansible/facts.d
-    cp /etc/facter/facts.d/host-info.json /etc/ansible/facts.d/cirb.fact
+    cat <<FACTS >/etc/ansible/facts.d/host-info.fact
+[general]
+datacenter=${dc}
+hostgroup=${hostgroup}
+instance=${instance}
+role=${role}
+subgroup=${subgroup}
+zone=${zone}
+FACTS
     echo "environment=${hostgroup}_${zone}" >>/etc/puppetlabs/puppet/puppet.conf
   }
   echo "Finished setting facts"
