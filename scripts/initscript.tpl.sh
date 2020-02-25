@@ -14,6 +14,8 @@ function create_extra_disk {
 
 # shellcheck disable=SC2086
 if [ x$1 == x"precustomization" ]; then
+  # shellcheck disable=SC2154
+  ${pre_script}
   echo "Started doing pre-customization steps..."
   # shellcheck disable=SC2154
   if [[ ${extra_disk} != 0 ]]; then create_extra_disk ; fi

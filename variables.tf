@@ -59,7 +59,13 @@ variable "cpus" {
 }
 
 variable "post_script" {
-  description = "Script to run on initial boot"
+  description = "Script to run at the end of the initial boot"
+  type        = string
+  default     = ""
+}
+
+variable "pre_script" {
+  description = "Script to run at the beginning of the initial boot"
   type        = string
   default     = ""
 }
