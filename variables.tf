@@ -1,13 +1,13 @@
 variable "catalog" {
   description = "Name of the catalog"
   type        = string
-  default     = "PUBLIC-CAT"
+  default     = "LINUX-CAT"
 }
 
 variable "template" {
   description = "Name of the template to start from"
   type        = string
-  default     = "RHEL7.7_Template_v_3.0.1"
+  default     = "linux-rhel-7-tpl"
 }
 
 variable "vapp" {

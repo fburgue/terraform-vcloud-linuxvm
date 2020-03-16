@@ -64,7 +64,9 @@ resource "vcd_vapp_vm" "vm" {
   lifecycle {
     #prevent_destroy = true
     ignore_changes = [
-      initscript
+      initscript,
+      template_name,
+      catalog_name
     ]
   }
 
