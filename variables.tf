@@ -114,3 +114,9 @@ variable "hostname_index" {
   type        = number
   default     = 1
 }
+
+variable "power_on" {
+  description = "A boolean value stating if this VM should be powered on"
+  type        = bool
+  default     = true
+}

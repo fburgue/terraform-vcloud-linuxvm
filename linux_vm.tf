@@ -15,12 +15,12 @@ resource "vcd_vapp_vm" "vm" {
   vapp_name       = var.vapp
   name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
   computer_name   = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
-  power_on        = true
   storage_profile = var.storage_profile
   catalog_name    = var.catalog
   template_name   = var.template
   memory          = var.memory
   cpus            = var.cpus
+  power_on        = var.power_on
 
   initscript = templatefile("${path.module}/scripts/initscript.tpl.sh",
     {
