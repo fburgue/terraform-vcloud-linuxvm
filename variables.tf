@@ -98,6 +98,11 @@ variable "storage_profile" {
   type        = string
 }
 
+variable "storage_profile_template" {
+  description = "Storage profile name for the template"
+  type        = string
+}
+
 variable "hostname_app_description" {
   description = "Application description (refer to 'Server naming convention v7.0)"
   type        = string
