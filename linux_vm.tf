@@ -16,7 +16,6 @@ resource "vcd_vapp_vm" "vm" {
   name                     = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
   computer_name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
   storage_profile          = var.storage_profile
-  storage_profile_template = var.storage_profile_template
   catalog_name             = var.catalog
   template_name            = var.template
   memory                   = var.memory
