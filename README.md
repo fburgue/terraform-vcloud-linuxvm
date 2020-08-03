@@ -23,6 +23,7 @@
 | template | Name of the template to start from | string | `"RHEL7.7_Template_v_3.0.1"` | no |
 | vapp | Name of the VApp | string | n/a | yes |
 | zone | Puppet/Ansible zone of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information) | string | n/a | yes |
+| metadata | A hash containing the vm metadata | hash | `{}`| yes |
 
 ## Outputs
 
