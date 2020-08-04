@@ -125,3 +125,9 @@ variable "power_on" {
   type        = bool
   default     = true
 }
+
+variable "metadata" {
+  description = "A hash containing the vm metadata"
+  type        = map
+  default     = {}
+}

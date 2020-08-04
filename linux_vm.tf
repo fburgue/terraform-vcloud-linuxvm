@@ -45,14 +45,14 @@ resource "vcd_vapp_vm" "vm" {
     storage_profile = var.storage_profile_template
   }
 
-  metadata = {
+  metadata = merge({
     role      = var.role
     subgroup  = var.subgroup
     hostgroup = var.hostgroup
     zone      = var.zone
     dc        = var.dc
     instance  = var.instance
-  }
+  }, var.metadata)
 
   network {
     type               = "org"
