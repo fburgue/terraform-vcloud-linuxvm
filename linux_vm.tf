@@ -12,29 +12,32 @@ locals {
 }
 
 resource "vcd_vapp_vm" "vm" {
-  vapp_name                = var.vapp
-  name                     = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
-  computer_name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
-  storage_profile          = var.storage_profile
-  catalog_name             = var.catalog
-  template_name            = var.template
-  memory                   = var.memory
-  cpus                     = var.cpus
-  power_on                 = var.power_on
+  vapp_name       = var.vapp
+  name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
+  computer_name   = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
+  storage_profile = var.storage_profile
+  catalog_name    = var.catalog
+  template_name   = var.template
+  memory          = var.memory
+  cpus            = var.cpus
+  power_on        = var.power_on
 
-  initscript = templatefile("${path.module}/scripts/initscript.tpl.sh",
-    {
-      json_facts  = local.json_facts,
-      hostgroup   = var.hostgroup,
-      zone        = var.zone,
-      dc          = var.dc,
-      instance    = var.instance,
-      role        = var.role,
-      subgroup    = var.subgroup,
-      pre_script  = var.pre_script,
-      post_script = var.post_script,
-      extra_disk  = var.extra_disk_size
-  })
+  customization {
+    initscript = templatefile("${path.module}/scripts/initscript.tpl.sh",
+      {
+        json_facts  = local.json_facts,
+        hostgroup   = var.hostgroup,
+        zone        = var.zone,
+        dc          = var.dc,
+        instance    = var.instance,
+        role        = var.role,
+        subgroup    = var.subgroup,
+        pre_script  = var.pre_script,
+        post_script = var.post_script,
+        extra_disk  = var.extra_disk_size
+    })
+
+  }
 
   override_template_disk {
     bus_type        = "paravirtual"
