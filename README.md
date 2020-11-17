@@ -27,6 +27,7 @@
 | hostname\_index | VM unique ID | `number` | `1` | no |
 | hostname\_type | Server type (refer to 'Server naming convention v7.0) | `string` | `"application"` | no |
 | instance | Puppet/Ansible instance of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information) | `string` | n/a | yes |
+| ip | Set a static ip address to the vm. | `string` | `""` | no |
 | memory | The amount of RAM (in MB) to allocate to the VM | `number` | `1024` | no |
 | metadata | A hash containing the vm metadata | `map` | `{}` | no |
 | network | Name of the network to use for this VM | `string` | n/a | yes |
