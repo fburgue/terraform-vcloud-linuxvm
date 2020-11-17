@@ -131,3 +131,9 @@ variable "metadata" {
   type        = map
   default     = {}
 }
+
+variable "ip" {
+  description = "Set a static ip address to the vm."
+  type        = string
+  default     = ""
+}
