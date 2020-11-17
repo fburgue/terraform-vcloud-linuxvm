@@ -61,7 +61,7 @@ resource "vcd_vapp_vm" "vm" {
     type               = "org"
     name               = var.network
     ip_allocation_mode = var.ip != "" ? "MANUAL" : "POOL"
-    ip                 = var.ip != "" ? var.ip : ""
+    ip                 = var.ip
     is_primary         = true
   }
 

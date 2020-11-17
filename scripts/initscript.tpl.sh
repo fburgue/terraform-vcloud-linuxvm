@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-function create_extra_disk {
+function create_extra_disk() {
   echo "Adding sdc"
-  for (( i=0; i<10; ++i)); do   # wait for disk to be created (sometimes slow...)
-    for host in /sys/class/scsi_host/*; do echo "- - -" > "$host/scan" ; done
-    for device in /sys/class/scsi_disk/*; do echo "1" > "$device/device/rescan" ; done
+  for ((i = 0; i < 10; ++i)); do # wait for disk to be created (sometimes slow...)
+    for host in /sys/class/scsi_host/*; do echo "- - -" >"$host/scan"; done
+    for device in /sys/class/scsi_disk/*; do echo "1" >"$device/device/rescan"; done
     fdisk -l /dev/sdc 2>&1 && break
     sleep 5
   done
@@ -18,7 +18,7 @@ if [ x$1 == x"precustomization" ]; then
   ${pre_script}
   echo "Started doing pre-customization steps..."
   # shellcheck disable=SC2154
-  if [[ ${extra_disk} != 0 ]]; then create_extra_disk ; fi
+  if [[ ${extra_disk} != 0 ]]; then create_extra_disk; fi
   echo "Setting facts"
   # shellcheck disable=SC2154
   {
@@ -46,7 +46,7 @@ FACTS
   echo "Finished doing pre-customization steps."
 elif [ x$1 == x"postcustomization" ]; then
   echo "Started doing post-customization steps..."
-  hostname -f > /etc/salt/minion_id
+  hostname -f >/etc/salt/minion_id
   # shellcheck disable=SC2154
   ${post_script}
   echo "Finished doing post-customization steps."
