@@ -46,6 +46,7 @@ FACTS
   echo "Finished doing pre-customization steps."
 elif [ x$1 == x"postcustomization" ]; then
   echo "Started doing post-customization steps..."
+  mkdir -p /etc/salt
   hostname -f >/etc/salt/minion_id
   # shellcheck disable=SC2154
   ${post_script}
