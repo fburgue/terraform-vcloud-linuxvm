@@ -21,6 +21,7 @@ if [ x$1 == x"precustomization" ]; then
   if [[ ${extra_disk} != 0 ]]; then create_extra_disk; fi
   echo "Setting facts"
   # shellcheck disable=SC2154
+  mkdir -p /etc/facter/facts.d
   {
     cat <<FACTS >/etc/facter/facts.d/host-info.txt
 dc=${dc}
@@ -40,6 +41,7 @@ role=${role}
 subgroup=${subgroup}
 zone=${zone}
 FACTS
+    mkdir -p /etc/puppetlabs/puppet/
     echo "environment=${hostgroup}_${zone}" >>/etc/puppetlabs/puppet/puppet.conf
   }
   echo "Finished setting facts"
