@@ -40,6 +40,7 @@ instance=${instance}
 role=${role}
 subgroup=${subgroup}
 zone=${zone}
+environment=${zone}
 FACTS
     mkdir -p /etc/puppetlabs/puppet/
     echo "environment=${hostgroup}_${zone}" >>/etc/puppetlabs/puppet/puppet.conf
