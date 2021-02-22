@@ -1,6 +1,25 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- update readme
+- add helper script to upload releases
+- update pre-commit config & fix lint
+- go vendoring
+- add validation for zone and dc variables
+
+### Feat
+- add defaults for storage profile
+- set rhel 8 as default template
+- breaking change: enable cpu/memory hot add
+
+### Fix
+- instance fact is empty by default
+
+### Test
+- use vault to get vcloud credentials
+- create/test/destroy vm using basic example
+
 
 <a name="v0.9.0"></a>
 ## [v0.9.0] - 2021-02-15
