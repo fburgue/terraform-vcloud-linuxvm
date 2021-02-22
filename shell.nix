@@ -28,5 +28,8 @@ pkgs.stdenv.mkDerivation rec {
     gocode
     shfmt
     shellcheck
+    go
+    golangci-lint
+    gofumpt
   ];
 }
