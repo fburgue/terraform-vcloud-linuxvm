@@ -96,11 +96,13 @@ variable "dc" {
 variable "storage_profile" {
   description = "Storage profile name"
   type        = string
+  default     = ""
 }
 
 variable "storage_profile_template" {
   description = "Storage profile name for the template"
   type        = string
+  default     = ""
 }
 
 variable "hostname_app_description" {

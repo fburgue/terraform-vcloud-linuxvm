@@ -9,18 +9,24 @@ locals {
     "instance" : var.instance
     "dc" : var.dc
   })
+  short_dc = upper(substr(var.dc, 0, 3))
+  default_storage_profile = {
+    "prod" : "GOLD-${local.short_dc}"
+  }
+  storage_profile          = var.storage_profile != "" ? var.storage_profile : lookup(local.default_storage_profile, var.role, "SILVER-${local.short_dc}")
+  storage_profile_template = var.storage_profile_template != "" ? var.storage_profile_template : lookup(local.default_storage_profile, var.role, "SILVER-${local.short_dc}")
 }
 
 resource "vcd_vapp_vm" "vm" {
-  vapp_name       = var.vapp
-  name            = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
-  computer_name   = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
-  storage_profile = var.storage_profile
-  catalog_name    = var.catalog
-  template_name   = var.template
-  memory          = var.memory
-  cpus            = var.cpus
-  power_on        = var.power_on
+  vapp_name              = var.vapp
+  name                   = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
+  computer_name          = format("%svvl%s%s%02s", local.short_zone, local.short_type, var.hostname_app_description, var.hostname_index)
+  storage_profile        = local.storage_profile
+  catalog_name           = var.catalog
+  template_name          = var.template
+  memory                 = var.memory
+  cpus                   = var.cpus
+  power_on               = var.power_on
   cpu_hot_add_enabled    = true
   memory_hot_add_enabled = true
 
@@ -47,7 +53,7 @@ resource "vcd_vapp_vm" "vm" {
     bus_number      = 0
     unit_number     = 1
     iops            = 0
-    storage_profile = var.storage_profile_template
+    storage_profile = local.storage_profile_template
   }
 
   metadata = merge({
@@ -86,7 +92,7 @@ resource "vcd_vm_internal_disk" "sdc" {
   size_in_mb      = var.extra_disk_size
   bus_number      = 0
   unit_number     = 2
-  storage_profile = var.storage_profile
+  storage_profile = local.storage_profile
   allow_vm_reboot = "false"
 }
 
