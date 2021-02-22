@@ -34,6 +34,7 @@ variable "hostgroup" {
 variable "instance" {
   description = "Puppet/Ansible instance of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information)"
   type        = string
+  default     = ""
 }
 
 
