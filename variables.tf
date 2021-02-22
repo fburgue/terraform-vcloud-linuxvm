@@ -7,7 +7,7 @@ variable "catalog" {
 variable "template" {
   description = "Name of the template to start from"
   type        = string
-  default     = "linux-rhel-7-tpl"
+  default     = "linux-rhel-8-tpl"
 }
 
 variable "vapp" {
