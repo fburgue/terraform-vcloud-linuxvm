@@ -3,6 +3,7 @@ let
   tf = pkgs.unstable.terraform_0_13.withPlugins (
     p: [
       pkgs.unstable.terraform-provider-vcd
+      pkgs.unstable.terraform-provider-vault
     ]
   );
 
@@ -22,7 +23,6 @@ pkgs.stdenv.mkDerivation rec {
     gitAndTools.bump2version
     unstable.git-chglog
     terraform-docs
-    cacert
     tflint
     golint
     gocode
@@ -31,5 +31,6 @@ pkgs.stdenv.mkDerivation rec {
     go
     golangci-lint
     gofumpt
+    vault
   ];
 }
