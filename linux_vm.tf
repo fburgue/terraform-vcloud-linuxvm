@@ -21,6 +21,8 @@ resource "vcd_vapp_vm" "vm" {
   memory          = var.memory
   cpus            = var.cpus
   power_on        = var.power_on
+  cpu_hot_add_enabled    = true
+  memory_hot_add_enabled = true
 
   customization {
     initscript = templatefile("${path.module}/scripts/initscript.tpl.sh",
@@ -68,7 +70,7 @@ resource "vcd_vapp_vm" "vm" {
   lifecycle {
     #prevent_destroy = true
     ignore_changes = [
-      initscript,
+      customization[0].initscript,
       template_name,
       catalog_name
     ]

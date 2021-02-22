@@ -2,7 +2,7 @@ let
   pkgs = import <nixpkgs> {};
   tf = pkgs.unstable.terraform_0_13.withPlugins (
     p: [
-      pkgs.terraform-provider-vcd
+      pkgs.unstable.terraform-provider-vcd
     ]
   );
 
