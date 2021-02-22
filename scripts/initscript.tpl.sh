@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2154
+# SC2154: terraform variables are referenced but not assigned.
 function create_extra_disk() {
   echo "Adding sdc"
   for ((i = 0; i < 10; ++i)); do # wait for disk to be created (sometimes slow...)
