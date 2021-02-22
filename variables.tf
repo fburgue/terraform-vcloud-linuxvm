@@ -41,10 +41,10 @@ variable "instance" {
 variable "zone" {
   description = "Puppet/Ansible zone of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information)"
   type        = string
-  #  validation {
-  #    condition     = can(regex("^(dev|testing|staging|prod)", var.zone))
-  #    error_message = "The zone must be either 'dev', 'testing', 'staging', 'prod'"
-  #  }
+  validation {
+    condition     = can(regex("^(dev|testing|staging|prod)", var.zone))
+    error_message = "The zone must be either 'dev', 'testing', 'staging', 'prod'."
+  }
 }
 
 variable "memory" {
@@ -92,6 +92,10 @@ variable "dc" {
   description = "Name of the dc where this VM is running"
   type        = string
   default     = "sibelga"
+  validation {
+    condition     = can(regex("^(art|sibelga)", var.dc))
+    error_message = "The zone must be either 'art' or 'sibelga'."
+  }
 }
 
 variable "storage_profile" {
