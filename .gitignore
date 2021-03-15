@@ -1,0 +1,7 @@
+.terraform
+plan
+.envrc.local
+*.tfstate
+*.tfstate.backup
+*.lock.hcl
+*.bz2

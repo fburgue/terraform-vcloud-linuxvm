@@ -7,7 +7,7 @@ variable "catalog" {
 variable "template" {
   description = "Name of the template to start from"
   type        = string
-  default     = "linux-rhel-7-tpl"
+  default     = "linux-rhel-8-tpl"
 }
 
 variable "vapp" {
@@ -34,16 +34,17 @@ variable "hostgroup" {
 variable "instance" {
   description = "Puppet/Ansible instance of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information)"
   type        = string
+  default     = ""
 }
 
 
 variable "zone" {
   description = "Puppet/Ansible zone of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information)"
   type        = string
-  #  validation {
-  #    condition     = can(regex("^(dev|testing|staging|prod)", var.zone))
-  #    error_message = "The zone must be either 'dev', 'testing', 'staging', 'prod'"
-  #  }
+  validation {
+    condition     = can(regex("^(dev|testing|staging|prod)", var.zone))
+    error_message = "The zone must be either 'dev', 'testing', 'staging', 'prod'."
+  }
 }
 
 variable "memory" {
@@ -91,16 +92,22 @@ variable "dc" {
   description = "Name of the dc where this VM is running"
   type        = string
   default     = "sibelga"
+  validation {
+    condition     = can(regex("^(art|sibelga)", var.dc))
+    error_message = "The zone must be either 'art' or 'sibelga'."
+  }
 }
 
 variable "storage_profile" {
   description = "Storage profile name"
   type        = string
+  default     = ""
 }
 
 variable "storage_profile_template" {
   description = "Storage profile name for the template"
   type        = string
+  default     = ""
 }
 
 variable "hostname_app_description" {
