@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v1.0.0"></a>
+## [v1.0.0] - 2021-03-15
 ### Chore
 - update readme
 - add helper script to upload releases
@@ -19,6 +22,12 @@
 ### Test
 - use vault to get vcloud credentials
 - create/test/destroy vm using basic example
+
+### BREAKING CHANGE
+
+You will need to upgrade the vcd provider version in
+your code as well. Use `pkgs.unstable.terraform-provider-vcd` instead of
+`pkgs.terraform-provider-vcd` in your `shell.nix'.
 
 
 <a name="v0.9.0"></a>
@@ -98,7 +107,8 @@
 - **internal-disk:** wait for disk to be created
 
 
-[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.9.0...HEAD
+[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v1.0.0...HEAD
+[v1.0.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.9.0...v1.0.0
 [v0.9.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.8...v0.9.0
 [v0.8]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.7...v0.8
 [v0.7]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.6...v0.7
