@@ -83,11 +83,6 @@ variable "extra_disk_size" {
   default     = 0
 }
 
-variable "network" {
-  description = "Name of the network to use for this VM"
-  type        = string
-}
-
 variable "dc" {
   description = "Name of the dc where this VM is running"
   type        = string
@@ -139,8 +134,12 @@ variable "metadata" {
   default     = {}
 }
 
-variable "ip" {
-  description = "Set a static ip address to the vm."
-  type        = string
-  default     = ""
+variable "nics" {
+  type = list(object({
+    network = string
+    ip      = string
+    primary = bool
+  }))
+
+  description = "VM Network Interfaces"
 }

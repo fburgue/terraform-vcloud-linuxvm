@@ -65,12 +65,15 @@ resource "vcd_vapp_vm" "vm" {
     instance  = var.instance
   }, var.metadata)
 
-  network {
-    type               = "org"
-    name               = var.network
-    ip_allocation_mode = var.ip != "" ? "MANUAL" : "POOL"
-    ip                 = var.ip
-    is_primary         = true
+  dynamic "network" {
+    for_each = var.nics
+    content {
+      type               = "org"
+      name               = network.value["network"]
+      ip_allocation_mode = network.value["ip"] != "" ? "MANUAL" : "POOL"
+      ip                 = network.value["ip"] != "" ? network.value["ip"] : null
+      is_primary         = network.value["primary"]
+    }
   }
 
   lifecycle {
