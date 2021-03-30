@@ -1,6 +1,12 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Ci
+- add linter
+
+### Feat
+- connect vm to multiple networks
+
 
 <a name="v1.0.0"></a>
 ## [v1.0.0] - 2021-03-15
