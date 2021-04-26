@@ -1,11 +1,21 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+
+<a name="v2.0.0"></a>
+## [v2.0.0] - 2021-04-26
 ### Ci
 - add linter
 
 ### Feat
-- connect vm to multiple networks
+- connect vm to multiple networ
+
+### BREAKING CHANGE
+
+Network configuration is configured using the `nics` variable.
+`network` and `ip` variables have been removed.
+
+refs CICDITS-1640
 
 
 <a name="v1.0.0"></a>
@@ -113,7 +123,8 @@ your code as well. Use `pkgs.unstable.terraform-provider-vcd` instead of
 - **internal-disk:** wait for disk to be created
 
 
-[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v1.0.0...HEAD
+[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v2.0.0...HEAD
+[v2.0.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v1.0.0...v2.0.0
 [v1.0.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.9.0...v1.0.0
 [v0.9.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.8...v0.9.0
 [v0.8]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.7...v0.8
