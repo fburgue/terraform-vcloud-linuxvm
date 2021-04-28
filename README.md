@@ -33,6 +33,8 @@
 | post\_script | Script to run at the end of the initial boot | `string` | `""` | no |
 | power\_on | A boolean value stating if this VM should be powered on | `bool` | `true` | no |
 | pre\_script | Script to run at the beginning of the initial boot | `string` | `""` | no |
+| provisioning\_user | User name that will be used to provision the VM | `string` | `"cicd"` | no |
+| provisioning\_user\_ssh\_pub\_key | Public SSH key that will be used by the provisioning user | `string` | n/a | yes |
 | role | Puppet/Ansible role of the machine (refer to http://docs.cicd.cirb.lan/puppet/overview.html#_5_essential_machine_code_facts_code for more information) | `string` | n/a | yes |
 | srv\_size | Number of megabytes to allocate for /srv partition | `number` | `10240` | no |
 | storage\_profile | Storage profile name | `string` | `""` | no |

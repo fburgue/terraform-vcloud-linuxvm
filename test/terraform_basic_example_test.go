@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/gruntwork-io/terratest/modules/retry"
 	"github.com/gruntwork-io/terratest/modules/ssh"
@@ -44,9 +45,9 @@ func TestTerraformBasicExample(t *testing.T) {
 	// cicd key must be present in ssh agent
 	ip := terraform.Output(t, terraformOptions, "ip")
 	//nolint:exhaustivestruct
-	host := ssh.Host{SshAgent: true, Hostname: ip, SshUserName: "root"}
+	host := ssh.Host{SshAgent: true, Hostname: ip, SshUserName: "cicd"}
 	description := fmt.Sprintf("SSH to VM %s", ip)
-	retry.DoWithRetry(t, description, 60, 4, func() (string, error) {
+	retry.DoWithRetry(t, description, 60, 5*time.Second, func() (string, error) {
 		err := ssh.CheckSshConnectionE(t, host)
 		if err != nil {
 			return "", fmt.Errorf("Unable to connect using ssh for the moment: %w", err)
