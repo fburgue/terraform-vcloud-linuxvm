@@ -2,6 +2,15 @@
 ## [Unreleased]
 
 
+<a name="v2.1.0"></a>
+## [v2.1.0] - 2021-04-28
+### Feat
+- add provisioning user/ssh public key parameter
+
+### Lint
+- allow multiple golangci-lint
+
+
 <a name="v2.0.0"></a>
 ## [v2.0.0] - 2021-04-26
 ### Ci
@@ -123,7 +132,8 @@ your code as well. Use `pkgs.unstable.terraform-provider-vcd` instead of
 - **internal-disk:** wait for disk to be created
 
 
-[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v2.0.0...HEAD
+[Unreleased]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v2.1.0...HEAD
+[v2.1.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v2.0.0...v2.1.0
 [v2.0.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v1.0.0...v2.0.0
 [v1.0.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.9.0...v1.0.0
 [v0.9.0]: http://stash.cirb.lan/projects/CICD/repos/terraform-vcloud-linux-vm/compare/v0.8...v0.9.0
