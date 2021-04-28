@@ -143,3 +143,14 @@ variable "nics" {
 
   description = "VM Network Interfaces"
 }
+
+variable "provisioning_user" {
+  type        = string
+  default     = "cicd"
+  description = "User name that will be used to provision the VM"
+}
+
+variable "provisioning_user_ssh_pub_key" {
+  type        = string
+  description = "Public SSH key that will be used by the provisioning user"
+}

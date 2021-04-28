@@ -33,16 +33,18 @@ resource "vcd_vapp_vm" "vm" {
   customization {
     initscript = templatefile("${path.module}/scripts/initscript.tpl.sh",
       {
-        json_facts  = local.json_facts,
-        hostgroup   = var.hostgroup,
-        zone        = var.zone,
-        dc          = var.dc,
-        instance    = var.instance,
-        role        = var.role,
-        subgroup    = var.subgroup,
-        pre_script  = var.pre_script,
-        post_script = var.post_script,
-        extra_disk  = var.extra_disk_size
+        json_facts                    = local.json_facts,
+        hostgroup                     = var.hostgroup,
+        zone                          = var.zone,
+        dc                            = var.dc,
+        instance                      = var.instance,
+        role                          = var.role,
+        subgroup                      = var.subgroup,
+        pre_script                    = var.pre_script,
+        post_script                   = var.post_script,
+        extra_disk                    = var.extra_disk_size,
+        provisioning_user             = var.provisioning_user,
+        provisioning_user_ssh_pub_key = var.provisioning_user_ssh_pub_key
     })
 
   }

@@ -48,6 +48,15 @@ FACTS
     echo "environment=${hostgroup}_${zone}" >>/etc/puppetlabs/puppet/puppet.conf
   }
   echo "Finished setting facts"
+  echo "Create provisioning user"
+  if [[ ${provisioning_user} != "ansible" ]]; then
+    adduser -G wheel -u 3000 "${provisioning_user}" 2>&1
+  fi
+  echo "Add public key in provisioning user"
+  export PROVISIONING_USER_SSH_CONFIG_DIR="/home/${provisioning_user}/.ssh"
+  mkdir -p "$PROVISIONING_USER_SSH_CONFIG_DIR"
+  echo "${provisioning_user_ssh_pub_key}" >>"$PROVISIONING_USER_SSH_CONFIG_DIR/authorized_keys"
+  chown -R "${provisioning_user}" "$PROVISIONING_USER_SSH_CONFIG_DIR"
   echo "Finished doing pre-customization steps."
 elif [ x$1 == x"postcustomization" ]; then
   echo "Started doing post-customization steps..."

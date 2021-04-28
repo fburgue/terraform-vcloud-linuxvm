@@ -9,7 +9,11 @@ data "vcd_network_direct" "ci" {
 
 resource "vcd_vapp_org_network" "direct-network-ci" {
   vapp_name        = vcd_vapp.terraform_dev.name
-  org_network_name = data.vcd_network_direct.network-vapp.name
+  org_network_name = data.vcd_network_direct.ci.name
+}
+
+data "vault_generic_secret" "ssh_key" {
+  path = "kv_cirb_cicd/provisioning/ssh-key"
 }
 
 module "basic" {
@@ -20,13 +24,11 @@ module "basic" {
     ip      = ""
     primary = true
   }]
-  zone                     = "dev"
-  hostname_app_description = "tf"
-  role                     = "testing"
-  hostgroup                = "cicd"
-  post_script              = <<EOF
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMwb1QEzYKaola6hYvkBelVXOvWYfi62lHMSGO6Zn+kQ cicd_team" >> /root/.ssh/authorized_keys
-EOF
+  zone                          = "dev"
+  hostname_app_description      = "tf"
+  role                          = "testing"
+  hostgroup                     = "cicd"
+  provisioning_user_ssh_pub_key = data.vault_generic_secret.ssh_key.data["cicd.pub"]
 }
 
 output "ip" {
