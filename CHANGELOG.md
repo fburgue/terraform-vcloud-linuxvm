@@ -1,6 +1,12 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- check that we have a valid vault token
+
+### Feat
+- output the name of the created vm
+
 
 <a name="v2.1.0"></a>
 ## [v2.1.0] - 2021-04-28
