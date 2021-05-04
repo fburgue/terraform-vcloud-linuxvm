@@ -35,3 +35,8 @@ output "ip" {
   value       = module.basic.ip
   description = "VM Ip"
 }
+
+output "name" {
+  value       = module.basic.name
+  description = "VM name"
+}

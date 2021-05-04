@@ -103,5 +103,10 @@ resource "vcd_vm_internal_disk" "sdc" {
 
 output "ip" {
   value       = vcd_vapp_vm.vm.network[0].ip
-  description = "VM Ips"
+  description = "VM Ip"
+}
+
+output "name" {
+  value       = vcd_vapp_vm.vm.name
+  description = "VM name"
 }
