@@ -27,7 +27,7 @@ bump:  ## Bump the current version
 release: changelog bump ## Create a release of the module (require RELEASE_TYPE to be major, minor, patch)
 	tar -cvjf vcloud-terraform-$(shell cat version.txt).tar.bz2 *.tf *.txt *.md scripts
 
-test:  ## Run terratest to test creation/connection/destruction of a VM using this terraform module
+test: check-vault-token  ## Run terratest to test creation/connection/destruction of a VM using this terraform module
 	cd test && go test -timeout 30m -mod=vendor
 
 check-artifactory:
@@ -48,3 +48,11 @@ install-git-hooks:  ## Install git hooks (pre-commit, pre-push, commit-msg)
 
 lint-jenkinsfile:  ## Lint jenkinsfile
 	docker run --rm -v $(PWD)/ruleset.groovy:/opt/ruleset.groovy -v $(PWD):/ws -u `id -u`:`id -g` cicd-docker.repository.irisnet.be/abletonag/groovylint python3 /opt/run_codenarc.py -- -includes='./Jenkinsfile'
+
+check-vault-token:
+	@token_ttl="$(shell vault token lookup -format=json | jq '.data.ttl')"; \
+	if [[ $$token_ttl -le 0 ]]; then \
+		echo 'Vault token expired or invalid. Please log into vault first.'; \
+		echo -e 'Run: export VAULT_TOKEN=$$(vault login -method=ldap -path=ldap-adinfra -field token username=${LOGINID})\n'; \
+		exit 1; \
+	fi
