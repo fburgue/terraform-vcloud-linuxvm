@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13 |
-| vcd | 3.1.0 |
+| vcd | 3.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| vcd | 3.1.0 |
+| vcd | 3.2.0 |
 
 ## Inputs
 
