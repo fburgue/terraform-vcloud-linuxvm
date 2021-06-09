@@ -11,7 +11,7 @@ repos:
         exclude: '^test/vendor/*'
       - id: check-merge-conflict
   - repo: 'https://github.com/jumanjihouse/pre-commit-hooks.git'
-    rev: 1.10.2
+    rev: 2.1.5
     hooks:
       - id: shellcheck
       - id: shfmt
