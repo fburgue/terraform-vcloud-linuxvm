@@ -11,10 +11,9 @@ repos:
         exclude: '^test/vendor/*'
       - id: check-merge-conflict
   - repo: 'https://github.com/jumanjihouse/pre-commit-hooks.git'
-    rev: 1.10.2
+    rev: 2.1.5
     hooks:
       - id: shellcheck
-      - id: shfmt
   - repo: 'https://github.com/adrienverge/yamllint'
     rev: v1.26.0
     hooks:
@@ -27,7 +26,7 @@ repos:
         stages:
           - commit-msg
   - repo: 'https://github.com/antonbabenko/pre-commit-terraform'
-    rev: v1.22.0
+    rev: v1.50.0
     hooks:
       - id: terraform_fmt
       - id: terraform_docs

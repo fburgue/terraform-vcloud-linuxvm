@@ -1,20 +1,14 @@
 let
-  pkgs = import <nixpkgs> {};
-  tf = pkgs.unstable.terraform_0_13.withPlugins (
-    p: [
-      pkgs.unstable.terraform-provider-vcd
-      pkgs.unstable.terraform-provider-vault
-    ]
-  );
-
+  pkgs = import <nixpkgs> { };
+  tf = pkgs.terraform_0_13.withPlugins
+    (
+      p: with pkgs; [
+        terraform-provider-vcd_v3x
+        terraform-provider-vault
+      ]
+    );
 in
-pkgs.stdenv.mkDerivation rec {
-  name = "tf-vcloud";
-  env = pkgs.buildEnv {
-    name = name;
-    paths = buildInputs;
-  };
-
+pkgs.mkShell {
   buildInputs = with pkgs;[
     tf
     jq

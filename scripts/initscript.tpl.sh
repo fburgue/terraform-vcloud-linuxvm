@@ -14,8 +14,7 @@ function create_extra_disk() {
   vgextend vg_rhel /dev/sdc1 2>&1
 }
 
-# shellcheck disable=SC2086
-if [ x$1 == x"precustomization" ]; then
+if [ "$1" == "precustomization" ]; then
   # shellcheck disable=SC2154
   ${pre_script}
   echo "Started doing pre-customization steps..."
@@ -58,7 +57,7 @@ FACTS
   echo "${provisioning_user_ssh_pub_key}" >>"$PROVISIONING_USER_SSH_CONFIG_DIR/authorized_keys"
   chown -R "${provisioning_user}" "$PROVISIONING_USER_SSH_CONFIG_DIR"
   echo "Finished doing pre-customization steps."
-elif [ x$1 == x"postcustomization" ]; then
+elif [ "$1" == "postcustomization" ]; then
   echo "Started doing post-customization steps..."
   mkdir -p /etc/salt
   hostname -f >/etc/salt/minion_id
