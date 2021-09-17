@@ -1,3 +1,4 @@
+# POC
 variable "catalog" {
   description = "Name of the catalog"
   type        = string

@@ -1,3 +1,4 @@
+# POC
 locals {
   short_zone = substr(var.zone, 0, 1)
   short_type = substr(var.hostname_type, 0, 1)
